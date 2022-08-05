@@ -36,17 +36,17 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/crossplane-contrib/provider-jet-template/apis"
-	"github.com/crossplane-contrib/provider-jet-template/apis/v1alpha1"
-	"github.com/crossplane-contrib/provider-jet-template/config"
-	"github.com/crossplane-contrib/provider-jet-template/internal/clients"
-	"github.com/crossplane-contrib/provider-jet-template/internal/controller"
-	"github.com/crossplane-contrib/provider-jet-template/internal/features"
+	"github.com/crossplane-contrib/provider-jet-apigee/apis"
+	"github.com/crossplane-contrib/provider-jet-apigee/apis/v1alpha1"
+	"github.com/crossplane-contrib/provider-jet-apigee/config"
+	"github.com/crossplane-contrib/provider-jet-apigee/internal/clients"
+	"github.com/crossplane-contrib/provider-jet-apigee/internal/controller"
+	"github.com/crossplane-contrib/provider-jet-apigee/internal/features"
 )
 
 func main() {
 	var (
-		app              = kingpin.New(filepath.Base(os.Args[0]), "Terraform based Crossplane provider for Template").DefaultEnvars()
+		app              = kingpin.New(filepath.Base(os.Args[0]), "Terraform based Crossplane provider for Apigee").DefaultEnvars()
 		debug            = app.Flag("debug", "Run with debug logging.").Short('d').Bool()
 		syncPeriod       = app.Flag("sync", "Controller manager sync period such as 300ms, 1.5h, or 2h45m").Short('s').Default("1h").Duration()
 		leaderElection   = app.Flag("leader-election", "Use leader election for the controller manager.").Short('l').Default("false").OverrideDefaultFromEnvar("LEADER_ELECTION").Bool()
@@ -61,7 +61,7 @@ func main() {
 	kingpin.MustParse(app.Parse(os.Args[1:]))
 
 	zl := zap.New(zap.UseDevMode(*debug))
-	log := logging.NewLogrLogger(zl.WithName("provider-jet-template"))
+	log := logging.NewLogrLogger(zl.WithName("provider-jet-apigee"))
 	if *debug {
 		// The controller-runtime runs with a no-op logger by default. It is
 		// *very* verbose even at info level, so we only provide it a real
