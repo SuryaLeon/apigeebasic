@@ -25,7 +25,7 @@ import (
 
 	"github.com/crossplane/terrajet/pkg/pipeline"
 
-	"github.com/crossplane-contrib/provider-jet-apigee/config"
+	"github.com/SuryaLeon/apigee-basic/config"
 )
 
 func main() {
