@@ -23,7 +23,7 @@ import (
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-	"github.com/SuryaLeon/apigee-basic/config"
+	"github.com/SuryaLeon/apigee-basic/config/null"
 )
 
 const (
