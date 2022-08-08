@@ -36,12 +36,12 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/crossplane-contrib/provider-jet-apigee/apis"
-	"github.com/crossplane-contrib/provider-jet-apigee/apis/v1alpha1"
-	"github.com/crossplane-contrib/provider-jet-apigee/config"
-	"github.com/crossplane-contrib/provider-jet-apigee/internal/clients"
-	"github.com/crossplane-contrib/provider-jet-apigee/internal/controller"
-	"github.com/crossplane-contrib/provider-jet-apigee/internal/features"
+	"github.com/SuryaLeon/apigee-basic/apis"
+	"github.com/SuryaLeon/apigee-basic/apis/v1alpha1"
+	"github.com/SuryaLeon/apigee-basic/config"
+	"github.com/SuryaLeon/apigee-basic/internal/clients"
+	"github.com/SuryaLeon/apigee-basic/internal/controller"
+	"github.com/SuryaLeon/apigee-basic/internal/features"
 )
 
 func main() {
