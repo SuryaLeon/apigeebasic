@@ -23,7 +23,8 @@ ENV TF_FORK 0
 RUN mkdir -p ${PLUGIN_DIR}
 
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${ARCH}.zip /tmp
-ADD ${TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX}/${TERRAFORM_PROVIDER_DOWNLOAD_NAME}_${TERRAFORM_PROVIDER_VERSION}_linux_${ARCH}.zip /tmp
+#ADD ${TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX}/${TERRAFORM_PROVIDER_DOWNLOAD_NAME}_${TERRAFORM_PROVIDER_VERSION}_linux_${ARCH}.zip /tmp
+ADD https://github.com/scastria/terraform-provider-apigee/releases/download/v0.1.51/terraform-provider-apigee_0.1.51_linux_amd64.zip /tmp
 
 ADD terraformrc.hcl ${TF_CLI_CONFIG_FILE}
 
