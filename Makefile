@@ -9,7 +9,7 @@ export TERRAFORM_VERSION := 1.1.6
 export TERRAFORM_PROVIDER_SOURCE := scastria/apigee
 export TERRAFORM_PROVIDER_VERSION := 0.1.51
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-apigee
-export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/scastria/terraform-provider-apigee
+export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/scastria/terraform-provider-apigee/releases/download/v0.1.51
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-apigee
 
 PLATFORMS ?= linux_amd64 linux_arm64
