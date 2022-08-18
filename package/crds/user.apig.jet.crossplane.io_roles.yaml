@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: developers.company.template.jet.crossplane.io
+  name: roles.user.apig.jet.crossplane.io
 spec:
-  group: company.template.jet.crossplane.io
+  group: user.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Developer
-    listKind: DeveloperList
-    plural: developers
-    singular: developer
+    - apigjet
+    kind: Role
+    listKind: RoleList
+    plural: roles
+    singular: role
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Developer is the Schema for the Developers API
+        description: Role is the Schema for the Roles API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: DeveloperSpec defines the desired state of Developer
+            description: RoleSpec defines the desired state of Role
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,15 +63,13 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  companyName:
-                    type: string
-                  developerEmail:
+                  emailId:
                     type: string
                   roleName:
                     type: string
                 required:
-                - companyName
-                - developerEmail
+                - emailId
+                - roleName
                 type: object
               providerConfigRef:
                 default:
@@ -170,7 +168,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: DeveloperStatus defines the observed state of Developer.
+            description: RoleStatus defines the observed state of Role.
             properties:
               atProvider:
                 properties:

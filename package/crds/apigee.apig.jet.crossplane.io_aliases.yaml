@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: policies.proxy.template.jet.crossplane.io
+  name: aliases.apigee.apig.jet.crossplane.io
 spec:
-  group: proxy.template.jet.crossplane.io
+  group: apigee.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Policy
-    listKind: PolicyList
-    plural: policies
-    singular: policy
+    - apigjet
+    kind: Alias
+    listKind: AliasList
+    plural: aliases
+    singular: alias
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Policy is the Schema for the Policys API
+        description: Alias is the Schema for the Aliass API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: PolicySpec defines the desired state of Policy
+            description: AliasSpec defines the desired state of Alias
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,19 +63,50 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  certFile:
+                    type: string
+                  certFileHash:
+                    type: string
+                  environmentName:
+                    type: string
                   file:
                     type: string
                   fileHash:
                     type: string
-                  proxyName:
+                  format:
                     type: string
-                  revision:
-                    type: number
+                  ignoreExpiryValidation:
+                    type: boolean
+                  ignoreNewlineValidation:
+                    type: boolean
+                  keyFile:
+                    type: string
+                  keyFileHash:
+                    type: string
+                  keystoreName:
+                    type: string
+                  passwordSecretRef:
+                    description: A SecretKeySelector is a reference to a secret key
+                      in an arbitrary namespace.
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
                 required:
-                - file
-                - fileHash
-                - proxyName
-                - revision
+                - environmentName
+                - format
+                - keystoreName
                 type: object
               providerConfigRef:
                 default:
@@ -174,7 +205,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: PolicyStatus defines the observed state of Policy.
+            description: AliasStatus defines the observed state of Alias.
             properties:
               atProvider:
                 properties:

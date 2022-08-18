@@ -5,14 +5,14 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: resourcefiles.environment.template.jet.crossplane.io
+  name: resourcefiles.proxy.apig.jet.crossplane.io
 spec:
-  group: environment.template.jet.crossplane.io
+  group: proxy.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
+    - apigjet
     kind: ResourceFile
     listKind: ResourceFileList
     plural: resourcefiles
@@ -63,18 +63,21 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  environmentName:
-                    type: string
                   file:
                     type: string
                   fileHash:
                     type: string
+                  proxyName:
+                    type: string
+                  revision:
+                    type: number
                   type:
                     type: string
                 required:
-                - environmentName
                 - file
                 - fileHash
+                - proxyName
+                - revision
                 - type
                 type: object
               providerConfigRef:

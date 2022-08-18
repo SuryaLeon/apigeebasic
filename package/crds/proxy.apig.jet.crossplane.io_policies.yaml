@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: roles.apigee.template.jet.crossplane.io
+  name: policies.proxy.apig.jet.crossplane.io
 spec:
-  group: apigee.template.jet.crossplane.io
+  group: proxy.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Role
-    listKind: RoleList
-    plural: roles
-    singular: role
+    - apigjet
+    kind: Policy
+    listKind: PolicyList
+    plural: policies
+    singular: policy
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Role is the Schema for the Roles API
+        description: Policy is the Schema for the Policys API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: RoleSpec defines the desired state of Role
+            description: PolicySpec defines the desired state of Policy
             properties:
               deletionPolicy:
                 default: Delete
@@ -62,6 +62,20 @@ spec:
                 - Delete
                 type: string
               forProvider:
+                properties:
+                  file:
+                    type: string
+                  fileHash:
+                    type: string
+                  proxyName:
+                    type: string
+                  revision:
+                    type: number
+                required:
+                - file
+                - fileHash
+                - proxyName
+                - revision
                 type: object
               providerConfigRef:
                 default:
@@ -160,7 +174,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: RoleStatus defines the observed state of Role.
+            description: PolicyStatus defines the observed state of Policy.
             properties:
               atProvider:
                 properties:

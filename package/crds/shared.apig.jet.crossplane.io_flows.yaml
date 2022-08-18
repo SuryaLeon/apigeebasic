@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: hosts.virtual.template.jet.crossplane.io
+  name: flows.shared.apig.jet.crossplane.io
 spec:
-  group: virtual.template.jet.crossplane.io
+  group: shared.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Host
-    listKind: HostList
-    plural: hosts
-    singular: host
+    - apigjet
+    kind: Flow
+    listKind: FlowList
+    plural: flows
+    singular: flow
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Host is the Schema for the Hosts API
+        description: Flow is the Schema for the Flows API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: HostSpec defines the desired state of Host
+            description: FlowSpec defines the desired state of Flow
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,31 +63,13 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  baseUrl:
+                  bundle:
                     type: string
-                  environmentName:
-                    type: string
-                  hostAliases:
-                    items:
-                      type: string
-                    type: array
-                  port:
-                    type: number
-                  sslClientAuthEnabled:
-                    type: boolean
-                  sslEnabled:
-                    type: boolean
-                  sslIgnoreValidationErrors:
-                    type: boolean
-                  sslKeyalias:
-                    type: string
-                  sslKeystore:
-                    type: string
-                  sslTruststore:
+                  bundleHash:
                     type: string
                 required:
-                - environmentName
-                - hostAliases
+                - bundle
+                - bundleHash
                 type: object
               providerConfigRef:
                 default:
@@ -186,12 +168,14 @@ spec:
             - forProvider
             type: object
           status:
-            description: HostStatus defines the observed state of Host.
+            description: FlowStatus defines the observed state of Flow.
             properties:
               atProvider:
                 properties:
                   id:
                     type: string
+                  revision:
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

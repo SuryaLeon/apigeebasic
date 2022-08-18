@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: appcredentials.developer.template.jet.crossplane.io
+  name: servers.target.apig.jet.crossplane.io
 spec:
-  group: developer.template.jet.crossplane.io
+  group: target.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: AppCredential
-    listKind: AppCredentialList
-    plural: appcredentials
-    singular: appcredential
+    - apigjet
+    kind: Server
+    listKind: ServerList
+    plural: servers
+    singular: server
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: AppCredential is the Schema for the AppCredentials API
+        description: Server is the Schema for the Servers API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AppCredentialSpec defines the desired state of AppCredential
+            description: ServerSpec defines the desired state of Server
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,47 +63,34 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  apiProducts:
+                  environmentName:
+                    type: string
+                  host:
+                    type: string
+                  isEnabled:
+                    type: boolean
+                  port:
+                    type: number
+                  protocols:
                     items:
                       type: string
                     type: array
-                  attributes:
-                    additionalProperties:
-                      type: string
-                    type: object
-                  consumerKey:
+                  sslClientAuthEnabled:
+                    type: boolean
+                  sslEnabled:
+                    type: boolean
+                  sslIgnoreValidationErrors:
+                    type: boolean
+                  sslKeyalias:
                     type: string
-                  consumerSecretSecretRef:
-                    description: A SecretKeySelector is a reference to a secret key
-                      in an arbitrary namespace.
-                    properties:
-                      key:
-                        description: The key to select.
-                        type: string
-                      name:
-                        description: Name of the secret.
-                        type: string
-                      namespace:
-                        description: Namespace of the secret.
-                        type: string
-                    required:
-                    - key
-                    - name
-                    - namespace
-                    type: object
-                  developerAppName:
+                  sslKeystore:
                     type: string
-                  developerEmail:
+                  sslTruststore:
                     type: string
-                  scopes:
-                    items:
-                      type: string
-                    type: array
                 required:
-                - consumerKey
-                - consumerSecretSecretRef
-                - developerAppName
-                - developerEmail
+                - environmentName
+                - host
+                - port
                 type: object
               providerConfigRef:
                 default:
@@ -202,7 +189,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: AppCredentialStatus defines the observed state of AppCredential.
+            description: ServerStatus defines the observed state of Server.
             properties:
               atProvider:
                 properties:

@@ -4,4 +4,4 @@ metadata:
   name: provider-apigee-basic
 spec:
   controller:
-    image: drsurya/apigcss:basic.1.0
+    image: DOCKER_REGISTRY/provider-apigee-controller:VERSION

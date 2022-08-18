@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: resourcefiles.proxy.template.jet.crossplane.io
+  name: flowdeployments.shared.apig.jet.crossplane.io
 spec:
-  group: proxy.template.jet.crossplane.io
+  group: shared.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: ResourceFile
-    listKind: ResourceFileList
-    plural: resourcefiles
-    singular: resourcefile
+    - apigjet
+    kind: FlowDeployment
+    listKind: FlowDeploymentList
+    plural: flowdeployments
+    singular: flowdeployment
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ResourceFile is the Schema for the ResourceFiles API
+        description: FlowDeployment is the Schema for the FlowDeployments API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ResourceFileSpec defines the desired state of ResourceFile
+            description: FlowDeploymentSpec defines the desired state of FlowDeployment
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,22 +63,20 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  file:
-                    type: string
-                  fileHash:
-                    type: string
-                  proxyName:
+                  delay:
+                    type: number
+                  environmentName:
                     type: string
                   revision:
                     type: number
-                  type:
+                  serviceAccount:
+                    type: string
+                  sharedFlowName:
                     type: string
                 required:
-                - file
-                - fileHash
-                - proxyName
+                - environmentName
                 - revision
-                - type
+                - sharedFlowName
                 type: object
               providerConfigRef:
                 default:
@@ -177,7 +175,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: ResourceFileStatus defines the observed state of ResourceFile.
+            description: FlowDeploymentStatus defines the observed state of FlowDeployment.
             properties:
               atProvider:
                 properties:

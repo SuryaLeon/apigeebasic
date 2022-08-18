@@ -6,7 +6,7 @@ include ../../../build/makelib/common.mk
 
 # ====================================================================================
 #  Options
-DOCKER_REGISTRY ?= crossplane
+DOCKER_REGISTRY ?= drsurya
 IMAGE = $(BUILD_REGISTRY)/provider-apigee-$(ARCH)
 OSBASEIMAGE = scratch
 include ../../../build/makelib/image.mk

@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: apps.company.template.jet.crossplane.io
+  name: references.apigee.apig.jet.crossplane.io
 spec:
-  group: company.template.jet.crossplane.io
+  group: apigee.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: App
-    listKind: AppList
-    plural: apps
-    singular: app
+    - apigjet
+    kind: Reference
+    listKind: ReferenceList
+    plural: references
+    singular: reference
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: App is the Schema for the Apps API
+        description: Reference is the Schema for the References API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AppSpec defines the desired state of App
+            description: ReferenceSpec defines the desired state of Reference
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,16 +63,16 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  attributes:
-                    additionalProperties:
-                      type: string
-                    type: object
-                  callbackUrl:
+                  environmentName:
                     type: string
-                  companyName:
+                  refers:
+                    type: string
+                  resourceType:
                     type: string
                 required:
-                - companyName
+                - environmentName
+                - refers
+                - resourceType
                 type: object
               providerConfigRef:
                 default:
@@ -171,7 +171,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: AppStatus defines the observed state of App.
+            description: ReferenceStatus defines the observed state of Reference.
             properties:
               atProvider:
                 properties:

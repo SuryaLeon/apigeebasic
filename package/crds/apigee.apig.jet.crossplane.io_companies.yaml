@@ -5,14 +5,14 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: companies.apigee.template.jet.crossplane.io
+  name: companies.apigee.apig.jet.crossplane.io
 spec:
-  group: apigee.template.jet.crossplane.io
+  group: apigee.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
+    - apigjet
     kind: Company
     listKind: CompanyList
     plural: companies

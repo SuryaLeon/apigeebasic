@@ -27,7 +27,7 @@ import (
 )
 
 const (
-	resourcePrefix = "template"
+	resourcePrefix = "apig"
 	modulePath     = "github.com/SuryaLeon/apigee-basic"
 )
 

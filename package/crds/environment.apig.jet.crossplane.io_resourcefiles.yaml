@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: apps.developer.template.jet.crossplane.io
+  name: resourcefiles.environment.apig.jet.crossplane.io
 spec:
-  group: developer.template.jet.crossplane.io
+  group: environment.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: App
-    listKind: AppList
-    plural: apps
-    singular: app
+    - apigjet
+    kind: ResourceFile
+    listKind: ResourceFileList
+    plural: resourcefiles
+    singular: resourcefile
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: App is the Schema for the Apps API
+        description: ResourceFile is the Schema for the ResourceFiles API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AppSpec defines the desired state of App
+            description: ResourceFileSpec defines the desired state of ResourceFile
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,16 +63,19 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  attributes:
-                    additionalProperties:
-                      type: string
-                    type: object
-                  callbackUrl:
+                  environmentName:
                     type: string
-                  developerEmail:
+                  file:
+                    type: string
+                  fileHash:
+                    type: string
+                  type:
                     type: string
                 required:
-                - developerEmail
+                - environmentName
+                - file
+                - fileHash
+                - type
                 type: object
               providerConfigRef:
                 default:
@@ -171,7 +174,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: AppStatus defines the observed state of App.
+            description: ResourceFileStatus defines the observed state of ResourceFile.
             properties:
               atProvider:
                 properties:

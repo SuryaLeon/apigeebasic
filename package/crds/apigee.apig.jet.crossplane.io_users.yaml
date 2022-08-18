@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: servers.target.template.jet.crossplane.io
+  name: users.apigee.apig.jet.crossplane.io
 spec:
-  group: target.template.jet.crossplane.io
+  group: apigee.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Server
-    listKind: ServerList
-    plural: servers
-    singular: server
+    - apigjet
+    kind: User
+    listKind: UserList
+    plural: users
+    singular: user
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Server is the Schema for the Servers API
+        description: User is the Schema for the Users API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ServerSpec defines the desired state of Server
+            description: UserSpec defines the desired state of User
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,34 +63,35 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  environmentName:
+                  emailId:
                     type: string
-                  host:
+                  firstName:
                     type: string
-                  isEnabled:
-                    type: boolean
-                  port:
-                    type: number
-                  protocols:
-                    items:
-                      type: string
-                    type: array
-                  sslClientAuthEnabled:
-                    type: boolean
-                  sslEnabled:
-                    type: boolean
-                  sslIgnoreValidationErrors:
-                    type: boolean
-                  sslKeyalias:
+                  lastName:
                     type: string
-                  sslKeystore:
-                    type: string
-                  sslTruststore:
-                    type: string
+                  passwordSecretRef:
+                    description: A SecretKeySelector is a reference to a secret key
+                      in an arbitrary namespace.
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
                 required:
-                - environmentName
-                - host
-                - port
+                - emailId
+                - firstName
+                - lastName
+                - passwordSecretRef
                 type: object
               providerConfigRef:
                 default:
@@ -189,7 +190,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: ServerStatus defines the observed state of Server.
+            description: UserStatus defines the observed state of User.
             properties:
               atProvider:
                 properties:

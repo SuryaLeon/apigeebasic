@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: keystores.apigee.template.jet.crossplane.io
+  name: products.apigee.apig.jet.crossplane.io
 spec:
-  group: apigee.template.jet.crossplane.io
+  group: apigee.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Keystore
-    listKind: KeystoreList
-    plural: keystores
-    singular: keystore
+    - apigjet
+    kind: Product
+    listKind: ProductList
+    plural: products
+    singular: product
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Keystore is the Schema for the Keystores API
+        description: Product is the Schema for the Products API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: KeystoreSpec defines the desired state of Keystore
+            description: ProductSpec defines the desired state of Product
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,10 +63,68 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  environmentName:
+                  apiResources:
+                    items:
+                      type: string
+                    type: array
+                  attributes:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  autoApprovalType:
+                    type: boolean
+                  description:
                     type: string
+                  displayName:
+                    type: string
+                  environments:
+                    items:
+                      type: string
+                    type: array
+                  operation:
+                    items:
+                      properties:
+                        apiSource:
+                          type: string
+                        attributes:
+                          additionalProperties:
+                            type: string
+                          type: object
+                        methods:
+                          items:
+                            type: string
+                          type: array
+                        path:
+                          type: string
+                        quota:
+                          type: number
+                        quotaInterval:
+                          type: number
+                        quotaTimeUnit:
+                          type: string
+                      required:
+                      - apiSource
+                      - methods
+                      - path
+                      type: object
+                    type: array
+                  proxies:
+                    items:
+                      type: string
+                    type: array
+                  quota:
+                    type: number
+                  quotaInterval:
+                    type: number
+                  quotaTimeUnit:
+                    type: string
+                  scopes:
+                    items:
+                      type: string
+                    type: array
                 required:
-                - environmentName
+                - autoApprovalType
+                - displayName
                 type: object
               providerConfigRef:
                 default:
@@ -165,7 +223,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: KeystoreStatus defines the observed state of Keystore.
+            description: ProductStatus defines the observed state of Product.
             properties:
               atProvider:
                 properties:

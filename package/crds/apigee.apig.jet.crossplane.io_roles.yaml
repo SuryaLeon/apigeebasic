@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: caches.apigee.template.jet.crossplane.io
+  name: roles.apigee.apig.jet.crossplane.io
 spec:
-  group: apigee.template.jet.crossplane.io
+  group: apigee.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Cache
-    listKind: CacheList
-    plural: caches
-    singular: cache
+    - apigjet
+    kind: Role
+    listKind: RoleList
+    plural: roles
+    singular: role
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Cache is the Schema for the Caches API
+        description: Role is the Schema for the Roles API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: CacheSpec defines the desired state of Cache
+            description: RoleSpec defines the desired state of Role
             properties:
               deletionPolicy:
                 default: Delete
@@ -62,21 +62,6 @@ spec:
                 - Delete
                 type: string
               forProvider:
-                properties:
-                  description:
-                    type: string
-                  environmentName:
-                    type: string
-                  expiryDate:
-                    type: string
-                  expiryTimeOfDay:
-                    type: string
-                  expiryTimeoutInSec:
-                    type: number
-                  skipCacheIfElementSizeInKbExceeds:
-                    type: number
-                required:
-                - environmentName
                 type: object
               providerConfigRef:
                 default:
@@ -175,7 +160,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: CacheStatus defines the observed state of Cache.
+            description: RoleStatus defines the observed state of Role.
             properties:
               atProvider:
                 properties:

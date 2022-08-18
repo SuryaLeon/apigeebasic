@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: resourcefiles.organization.template.jet.crossplane.io
+  name: permissions.role.apig.jet.crossplane.io
 spec:
-  group: organization.template.jet.crossplane.io
+  group: role.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: ResourceFile
-    listKind: ResourceFileList
-    plural: resourcefiles
-    singular: resourcefile
+    - apigjet
+    kind: Permission
+    listKind: PermissionList
+    plural: permissions
+    singular: permission
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ResourceFile is the Schema for the ResourceFiles API
+        description: Permission is the Schema for the Permissions API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ResourceFileSpec defines the desired state of ResourceFile
+            description: PermissionSpec defines the desired state of Permission
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,16 +63,18 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  file:
+                  path:
                     type: string
-                  fileHash:
-                    type: string
-                  type:
+                  permissions:
+                    items:
+                      type: string
+                    type: array
+                  roleName:
                     type: string
                 required:
-                - file
-                - fileHash
-                - type
+                - path
+                - permissions
+                - roleName
                 type: object
               providerConfigRef:
                 default:
@@ -171,7 +173,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: ResourceFileStatus defines the observed state of ResourceFile.
+            description: PermissionStatus defines the observed state of Permission.
             properties:
               atProvider:
                 properties:

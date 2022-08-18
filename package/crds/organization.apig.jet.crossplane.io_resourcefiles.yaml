@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: deployments.proxy.template.jet.crossplane.io
+  name: resourcefiles.organization.apig.jet.crossplane.io
 spec:
-  group: proxy.template.jet.crossplane.io
+  group: organization.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Deployment
-    listKind: DeploymentList
-    plural: deployments
-    singular: deployment
+    - apigjet
+    kind: ResourceFile
+    listKind: ResourceFileList
+    plural: resourcefiles
+    singular: resourcefile
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Deployment is the Schema for the Deployments API
+        description: ResourceFile is the Schema for the ResourceFiles API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: DeploymentSpec defines the desired state of Deployment
+            description: ResourceFileSpec defines the desired state of ResourceFile
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,20 +63,16 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  delay:
-                    type: number
-                  environmentName:
+                  file:
                     type: string
-                  proxyName:
+                  fileHash:
                     type: string
-                  revision:
-                    type: number
-                  serviceAccount:
+                  type:
                     type: string
                 required:
-                - environmentName
-                - proxyName
-                - revision
+                - file
+                - fileHash
+                - type
                 type: object
               providerConfigRef:
                 default:
@@ -175,7 +171,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: DeploymentStatus defines the observed state of Deployment.
+            description: ResourceFileStatus defines the observed state of ResourceFile.
             properties:
               atProvider:
                 properties:

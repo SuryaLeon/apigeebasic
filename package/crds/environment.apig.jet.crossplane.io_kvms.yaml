@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: developers.apigee.template.jet.crossplane.io
+  name: kvms.environment.apig.jet.crossplane.io
 spec:
-  group: apigee.template.jet.crossplane.io
+  group: environment.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Developer
-    listKind: DeveloperList
-    plural: developers
-    singular: developer
+    - apigjet
+    kind: Kvm
+    listKind: KvmList
+    plural: kvms
+    singular: kvm
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Developer is the Schema for the Developers API
+        description: Kvm is the Schema for the Kvms API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: DeveloperSpec defines the desired state of Developer
+            description: KvmSpec defines the desired state of Kvm
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,23 +63,36 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  attributes:
+                  encrypted:
+                    type: boolean
+                  entry:
                     additionalProperties:
                       type: string
                     type: object
-                  email:
+                  environmentName:
                     type: string
-                  firstName:
-                    type: string
-                  lastName:
-                    type: string
-                  userName:
-                    type: string
+                  sensitiveEntrySecretRef:
+                    additionalProperties:
+                      description: A SecretKeySelector is a reference to a secret
+                        key in an arbitrary namespace.
+                      properties:
+                        key:
+                          description: The key to select.
+                          type: string
+                        name:
+                          description: Name of the secret.
+                          type: string
+                        namespace:
+                          description: Namespace of the secret.
+                          type: string
+                      required:
+                      - key
+                      - name
+                      - namespace
+                      type: object
+                    type: object
                 required:
-                - email
-                - firstName
-                - lastName
-                - userName
+                - environmentName
                 type: object
               providerConfigRef:
                 default:
@@ -178,7 +191,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: DeveloperStatus defines the observed state of Developer.
+            description: KvmStatus defines the observed state of Kvm.
             properties:
               atProvider:
                 properties:

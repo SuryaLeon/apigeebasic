@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: appcredentials.company.template.jet.crossplane.io
+  name: kvms.proxy.apig.jet.crossplane.io
 spec:
-  group: company.template.jet.crossplane.io
+  group: proxy.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: AppCredential
-    listKind: AppCredentialList
-    plural: appcredentials
-    singular: appcredential
+    - apigjet
+    kind: Kvm
+    listKind: KvmList
+    plural: kvms
+    singular: kvm
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: AppCredential is the Schema for the AppCredentials API
+        description: Kvm is the Schema for the Kvms API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AppCredentialSpec defines the desired state of AppCredential
+            description: KvmSpec defines the desired state of Kvm
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,47 +63,36 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  apiProducts:
-                    items:
-                      type: string
-                    type: array
-                  attributes:
+                  encrypted:
+                    type: boolean
+                  entry:
                     additionalProperties:
                       type: string
                     type: object
-                  companyAppName:
+                  proxyName:
                     type: string
-                  companyName:
-                    type: string
-                  consumerKey:
-                    type: string
-                  consumerSecretSecretRef:
-                    description: A SecretKeySelector is a reference to a secret key
-                      in an arbitrary namespace.
-                    properties:
-                      key:
-                        description: The key to select.
-                        type: string
-                      name:
-                        description: Name of the secret.
-                        type: string
-                      namespace:
-                        description: Namespace of the secret.
-                        type: string
-                    required:
-                    - key
-                    - name
-                    - namespace
+                  sensitiveEntrySecretRef:
+                    additionalProperties:
+                      description: A SecretKeySelector is a reference to a secret
+                        key in an arbitrary namespace.
+                      properties:
+                        key:
+                          description: The key to select.
+                          type: string
+                        name:
+                          description: Name of the secret.
+                          type: string
+                        namespace:
+                          description: Namespace of the secret.
+                          type: string
+                      required:
+                      - key
+                      - name
+                      - namespace
+                      type: object
                     type: object
-                  scopes:
-                    items:
-                      type: string
-                    type: array
                 required:
-                - companyAppName
-                - companyName
-                - consumerKey
-                - consumerSecretSecretRef
+                - proxyName
                 type: object
               providerConfigRef:
                 default:
@@ -202,7 +191,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: AppCredentialStatus defines the observed state of AppCredential.
+            description: KvmStatus defines the observed state of Kvm.
             properties:
               atProvider:
                 properties:

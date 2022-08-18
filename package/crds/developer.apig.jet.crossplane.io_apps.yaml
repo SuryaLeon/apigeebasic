@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: kvms.organization.template.jet.crossplane.io
+  name: apps.developer.apig.jet.crossplane.io
 spec:
-  group: organization.template.jet.crossplane.io
+  group: developer.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Kvm
-    listKind: KvmList
-    plural: kvms
-    singular: kvm
+    - apigjet
+    kind: App
+    listKind: AppList
+    plural: apps
+    singular: app
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Kvm is the Schema for the Kvms API
+        description: App is the Schema for the Apps API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: KvmSpec defines the desired state of Kvm
+            description: AppSpec defines the desired state of App
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,32 +63,16 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  encrypted:
-                    type: boolean
-                  entry:
+                  attributes:
                     additionalProperties:
                       type: string
                     type: object
-                  sensitiveEntrySecretRef:
-                    additionalProperties:
-                      description: A SecretKeySelector is a reference to a secret
-                        key in an arbitrary namespace.
-                      properties:
-                        key:
-                          description: The key to select.
-                          type: string
-                        name:
-                          description: Name of the secret.
-                          type: string
-                        namespace:
-                          description: Namespace of the secret.
-                          type: string
-                      required:
-                      - key
-                      - name
-                      - namespace
-                      type: object
-                    type: object
+                  callbackUrl:
+                    type: string
+                  developerEmail:
+                    type: string
+                required:
+                - developerEmail
                 type: object
               providerConfigRef:
                 default:
@@ -187,7 +171,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: KvmStatus defines the observed state of Kvm.
+            description: AppStatus defines the observed state of App.
             properties:
               atProvider:
                 properties:

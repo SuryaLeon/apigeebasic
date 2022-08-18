@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: aliases.apigee.template.jet.crossplane.io
+  name: developers.company.apig.jet.crossplane.io
 spec:
-  group: apigee.template.jet.crossplane.io
+  group: company.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Alias
-    listKind: AliasList
-    plural: aliases
-    singular: alias
+    - apigjet
+    kind: Developer
+    listKind: DeveloperList
+    plural: developers
+    singular: developer
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Alias is the Schema for the Aliass API
+        description: Developer is the Schema for the Developers API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AliasSpec defines the desired state of Alias
+            description: DeveloperSpec defines the desired state of Developer
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,50 +63,15 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  certFile:
+                  companyName:
                     type: string
-                  certFileHash:
+                  developerEmail:
                     type: string
-                  environmentName:
+                  roleName:
                     type: string
-                  file:
-                    type: string
-                  fileHash:
-                    type: string
-                  format:
-                    type: string
-                  ignoreExpiryValidation:
-                    type: boolean
-                  ignoreNewlineValidation:
-                    type: boolean
-                  keyFile:
-                    type: string
-                  keyFileHash:
-                    type: string
-                  keystoreName:
-                    type: string
-                  passwordSecretRef:
-                    description: A SecretKeySelector is a reference to a secret key
-                      in an arbitrary namespace.
-                    properties:
-                      key:
-                        description: The key to select.
-                        type: string
-                      name:
-                        description: Name of the secret.
-                        type: string
-                      namespace:
-                        description: Namespace of the secret.
-                        type: string
-                    required:
-                    - key
-                    - name
-                    - namespace
-                    type: object
                 required:
-                - environmentName
-                - format
-                - keystoreName
+                - companyName
+                - developerEmail
                 type: object
               providerConfigRef:
                 default:
@@ -205,7 +170,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: AliasStatus defines the observed state of Alias.
+            description: DeveloperStatus defines the observed state of Developer.
             properties:
               atProvider:
                 properties:

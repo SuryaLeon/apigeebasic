@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: permissions.role.template.jet.crossplane.io
+  name: caches.apigee.apig.jet.crossplane.io
 spec:
-  group: role.template.jet.crossplane.io
+  group: apigee.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Permission
-    listKind: PermissionList
-    plural: permissions
-    singular: permission
+    - apigjet
+    kind: Cache
+    listKind: CacheList
+    plural: caches
+    singular: cache
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Permission is the Schema for the Permissions API
+        description: Cache is the Schema for the Caches API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: PermissionSpec defines the desired state of Permission
+            description: CacheSpec defines the desired state of Cache
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,18 +63,20 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  path:
+                  description:
                     type: string
-                  permissions:
-                    items:
-                      type: string
-                    type: array
-                  roleName:
+                  environmentName:
                     type: string
+                  expiryDate:
+                    type: string
+                  expiryTimeOfDay:
+                    type: string
+                  expiryTimeoutInSec:
+                    type: number
+                  skipCacheIfElementSizeInKbExceeds:
+                    type: number
                 required:
-                - path
-                - permissions
-                - roleName
+                - environmentName
                 type: object
               providerConfigRef:
                 default:
@@ -173,7 +175,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: PermissionStatus defines the observed state of Permission.
+            description: CacheStatus defines the observed state of Cache.
             properties:
               atProvider:
                 properties:

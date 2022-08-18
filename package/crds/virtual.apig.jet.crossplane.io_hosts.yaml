@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: flowdeployments.shared.template.jet.crossplane.io
+  name: hosts.virtual.apig.jet.crossplane.io
 spec:
-  group: shared.template.jet.crossplane.io
+  group: virtual.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: FlowDeployment
-    listKind: FlowDeploymentList
-    plural: flowdeployments
-    singular: flowdeployment
+    - apigjet
+    kind: Host
+    listKind: HostList
+    plural: hosts
+    singular: host
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: FlowDeployment is the Schema for the FlowDeployments API
+        description: Host is the Schema for the Hosts API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: FlowDeploymentSpec defines the desired state of FlowDeployment
+            description: HostSpec defines the desired state of Host
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,20 +63,31 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  delay:
-                    type: number
+                  baseUrl:
+                    type: string
                   environmentName:
                     type: string
-                  revision:
+                  hostAliases:
+                    items:
+                      type: string
+                    type: array
+                  port:
                     type: number
-                  serviceAccount:
+                  sslClientAuthEnabled:
+                    type: boolean
+                  sslEnabled:
+                    type: boolean
+                  sslIgnoreValidationErrors:
+                    type: boolean
+                  sslKeyalias:
                     type: string
-                  sharedFlowName:
+                  sslKeystore:
+                    type: string
+                  sslTruststore:
                     type: string
                 required:
                 - environmentName
-                - revision
-                - sharedFlowName
+                - hostAliases
                 type: object
               providerConfigRef:
                 default:
@@ -175,7 +186,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: FlowDeploymentStatus defines the observed state of FlowDeployment.
+            description: HostStatus defines the observed state of Host.
             properties:
               atProvider:
                 properties:

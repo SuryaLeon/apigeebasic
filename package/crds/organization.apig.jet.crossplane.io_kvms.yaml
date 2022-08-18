@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: proxies.apigee.template.jet.crossplane.io
+  name: kvms.organization.apig.jet.crossplane.io
 spec:
-  group: apigee.template.jet.crossplane.io
+  group: organization.apig.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Proxy
-    listKind: ProxyList
-    plural: proxies
-    singular: proxy
+    - apigjet
+    kind: Kvm
+    listKind: KvmList
+    plural: kvms
+    singular: kvm
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Proxy is the Schema for the Proxys API
+        description: Kvm is the Schema for the Kvms API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProxySpec defines the desired state of Proxy
+            description: KvmSpec defines the desired state of Kvm
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,13 +63,32 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  bundle:
-                    type: string
-                  bundleHash:
-                    type: string
-                required:
-                - bundle
-                - bundleHash
+                  encrypted:
+                    type: boolean
+                  entry:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  sensitiveEntrySecretRef:
+                    additionalProperties:
+                      description: A SecretKeySelector is a reference to a secret
+                        key in an arbitrary namespace.
+                      properties:
+                        key:
+                          description: The key to select.
+                          type: string
+                        name:
+                          description: Name of the secret.
+                          type: string
+                        namespace:
+                          description: Namespace of the secret.
+                          type: string
+                      required:
+                      - key
+                      - name
+                      - namespace
+                      type: object
+                    type: object
                 type: object
               providerConfigRef:
                 default:
@@ -168,14 +187,12 @@ spec:
             - forProvider
             type: object
           status:
-            description: ProxyStatus defines the observed state of Proxy.
+            description: KvmStatus defines the observed state of Kvm.
             properties:
               atProvider:
                 properties:
                   id:
                     type: string
-                  revision:
-                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.
