@@ -23,12 +23,12 @@ import (
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-	"github.com/SuryaLeon/apigee-basic/config/null"
+	"github.com/SuryaLeon/apigeebasic/config/null"
 )
 
 const (
 	resourcePrefix = "apig"
-	modulePath     = "github.com/SuryaLeon/apigee-basic"
+	modulePath     = "github.com/SuryaLeon/apigeebasic"
 )
 
 //go:embed schema.json

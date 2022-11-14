@@ -1,12 +1,12 @@
 # ====================================================================================
 # Setup Project
 
-PLATFORMS := linux_amd64 linux_arm64
+PLATFORMS := linux_amd64
 include ../../../build/makelib/common.mk
 
 # ====================================================================================
 #  Options
-DOCKER_REGISTRY ?= drsurya
+DOCKER_REGISTRY ?= drsurya/csspln
 IMAGE = $(BUILD_REGISTRY)/provider-apigee-$(ARCH)
 OSBASEIMAGE = scratch
 include ../../../build/makelib/image.mk

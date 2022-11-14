@@ -1,4 +1,4 @@
-module github.com/SuryaLeon/apigee-basic
+module github.com/SuryaLeon/apigeebasic
 
 go 1.17
 

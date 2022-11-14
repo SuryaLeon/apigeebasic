@@ -30,7 +30,7 @@ import (
 	"github.com/crossplane/terrajet/pkg/terraform"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1alpha1 "github.com/SuryaLeon/apigee-basic/apis/environment/v1alpha1"
+	v1alpha1 "github.com/SuryaLeon/apigeebasic/apis/environment/v1alpha1"
 )
 
 // Setup adds a controller that reconciles Kvm managed resources.

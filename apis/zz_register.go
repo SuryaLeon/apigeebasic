@@ -22,18 +22,18 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/SuryaLeon/apigee-basic/apis/apigee/v1alpha1"
-	v1alpha1company "github.com/SuryaLeon/apigee-basic/apis/company/v1alpha1"
-	v1alpha1developer "github.com/SuryaLeon/apigee-basic/apis/developer/v1alpha1"
-	v1alpha1environment "github.com/SuryaLeon/apigee-basic/apis/environment/v1alpha1"
-	v1alpha1organization "github.com/SuryaLeon/apigee-basic/apis/organization/v1alpha1"
-	v1alpha1proxy "github.com/SuryaLeon/apigee-basic/apis/proxy/v1alpha1"
-	v1alpha1role "github.com/SuryaLeon/apigee-basic/apis/role/v1alpha1"
-	v1alpha1shared "github.com/SuryaLeon/apigee-basic/apis/shared/v1alpha1"
-	v1alpha1target "github.com/SuryaLeon/apigee-basic/apis/target/v1alpha1"
-	v1alpha1user "github.com/SuryaLeon/apigee-basic/apis/user/v1alpha1"
-	v1alpha1apis "github.com/SuryaLeon/apigee-basic/apis/v1alpha1"
-	v1alpha1virtual "github.com/SuryaLeon/apigee-basic/apis/virtual/v1alpha1"
+	v1alpha1 "github.com/SuryaLeon/apigeebasic/apis/apigee/v1alpha1"
+	v1alpha1company "github.com/SuryaLeon/apigeebasic/apis/company/v1alpha1"
+	v1alpha1developer "github.com/SuryaLeon/apigeebasic/apis/developer/v1alpha1"
+	v1alpha1environment "github.com/SuryaLeon/apigeebasic/apis/environment/v1alpha1"
+	v1alpha1organization "github.com/SuryaLeon/apigeebasic/apis/organization/v1alpha1"
+	v1alpha1proxy "github.com/SuryaLeon/apigeebasic/apis/proxy/v1alpha1"
+	v1alpha1role "github.com/SuryaLeon/apigeebasic/apis/role/v1alpha1"
+	v1alpha1shared "github.com/SuryaLeon/apigeebasic/apis/shared/v1alpha1"
+	v1alpha1target "github.com/SuryaLeon/apigeebasic/apis/target/v1alpha1"
+	v1alpha1user "github.com/SuryaLeon/apigeebasic/apis/user/v1alpha1"
+	v1alpha1apis "github.com/SuryaLeon/apigeebasic/apis/v1alpha1"
+	v1alpha1virtual "github.com/SuryaLeon/apigeebasic/apis/virtual/v1alpha1"
 )
 
 func init() {

@@ -4,6 +4,7 @@ RUN apk --no-cache add ca-certificates bash
 ARG ARCH
 ARG TINI_VERSION
 ENV USER_ID=1001
+ARG KUBERNETES_MASTER
 
 # Setup Terraform environment
 

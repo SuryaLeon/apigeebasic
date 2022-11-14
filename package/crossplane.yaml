@@ -1,7 +1,7 @@
 apiVersion: meta.pkg.crossplane.io/v1alpha1
 kind: Provider
 metadata:
-  name: provider-apigee-basic
+  name: provider-apigeebasic
 spec:
   controller:
-    image: DOCKER_REGISTRY/provider-apigee-controller:VERSION
+    image: drsurya/prv:apigeebasic

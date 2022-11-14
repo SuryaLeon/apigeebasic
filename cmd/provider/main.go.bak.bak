@@ -36,12 +36,12 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/SuryaLeon/apigee-basic/apis"
-	"github.com/SuryaLeon/apigee-basic/apis/v1alpha1"
-	"github.com/SuryaLeon/apigee-basic/config"
-	"github.com/SuryaLeon/apigee-basic/internal/clients"
-	"github.com/SuryaLeon/apigee-basic/internal/controller"
-	"github.com/SuryaLeon/apigee-basic/internal/features"
+	"github.com/SuryaLeon/apigeebasic/apis"
+	"github.com/SuryaLeon/apigeebasic/apis/v1alpha1"
+	"github.com/SuryaLeon/apigeebasic/config"
+	"github.com/SuryaLeon/apigeebasic/internal/clients"
+	"github.com/SuryaLeon/apigeebasic/internal/controller"
+	"github.com/SuryaLeon/apigeebasic/internal/features"
 )
 
 func main() {
@@ -61,7 +61,7 @@ func main() {
 	kingpin.MustParse(app.Parse(os.Args[1:]))
 
 	zl := zap.New(zap.UseDevMode(*debug))
-	log := logging.NewLogrLogger(zl.WithName("provider-jet-apigee"))
+	log := logging.NewLogrLogger(zl.WithName("provider-apigeebasic"))
 	if *debug {
 		// The controller-runtime runs with a no-op logger by default. It is
 		// *very* verbose even at info level, so we only provide it a real
@@ -76,7 +76,7 @@ func main() {
 
 	mgr, err := ctrl.NewManager(cfg, ctrl.Options{
 		LeaderElection:             *leaderElection,
-		LeaderElectionID:           "crossplane-leader-election-provider-jet-apigee",
+		LeaderElectionID:           "crossplane-leader-election-provider-apigeebasic",
 		SyncPeriod:                 syncPeriod,
 		LeaderElectionResourceLock: resourcelock.LeasesResourceLock,
 		LeaseDuration:              func() *time.Duration { d := 60 * time.Second; return &d }(),

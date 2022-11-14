@@ -1,8 +1,8 @@
 # ====================================================================================
 # Setup Project
 
-PROJECT_NAME := provider-apigee-basic
-PROJECT_REPO := github.com/SuryaLeon/apigee-basic
+PROJECT_NAME := provider-apigeebasic
+PROJECT_REPO := github.com/SuryaLeon/apigeebasic
 
 export TERRAFORM_VERSION := 1.1.6
 
@@ -12,7 +12,7 @@ export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-apigee
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/scastria/terraform-provider-apigee/releases/download/v0.1.51
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-apigee_v0.1.51
 
-PLATFORMS ?= linux_amd64 linux_arm64
+PLATFORMS := linux_amd64
 
 # -include will silently skip missing files, which allows us
 # to load those files with a target in the Makefile. If only
@@ -51,8 +51,8 @@ GO111MODULE = on
 # ====================================================================================
 # Setup Images
 
-DOCKER_REGISTRY ?= drsurya
-IMAGES = provider-apigee-basic provider-apigee-basic-controller
+DOCKER_REGISTRY ?= drsurya/csspln
+IMAGES = provider-apigeebasic provider-apigeebasic-controller
 -include build/makelib/image.mk
 
 # ====================================================================================
